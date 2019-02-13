@@ -3,24 +3,26 @@
 	<div class="container">
 		<div class="row">
 
-
 			<!-- START PRICE TITLE -->
 			<div class="price-title col-md-4">
-				<h3>Choose from <span>best</span> of two plans <span>Affordable</span> Pricing</h3>
+				<h3><?php  the_sub_field('prices_title'); ?> <span><?php  the_sub_field('prices_title_bold'); ?></span> <?php  the_sub_field('prices_title1'); ?> <span><?php  the_sub_field('prices_title_bold1'); ?></span> <?php  the_sub_field('prices_title2'); ?></h3>
 
 				<!-- START PRICING TABLES TABS -->
 				<div class="pricing-tabs">
+						<?php 
+					    if( have_rows('prices_groups') ): ?>
 					<ul class="price-tabs" role="tablist">
-					    <li role="presentation" class="active">
-					    	<a href="index.html#personal" aria-controls="personal" role="tab" data-toggle="tab">
-					    		Personal
-					    	</a>
+						     <?php $i = 0;  while ( have_rows('prices_groups') ) : the_row();
+							?>
+					    <li role="presentation" <?php if($i == 0) { ?>class="active"<?php } ?>>
+						    	<a href="index.html#<?php  the_sub_field('prices_group_name'); ?>" aria-controls="<?php  the_sub_field('prices_group_name'); ?>" role="tab" data-toggle="tab">
+						    		<?php  the_sub_field('prices_group_name'); ?>
+						    	</a>
 						</li>
-					    <li role="presentation">
-					    	<a href="index.html#business" aria-controls="business" role="tab" data-toggle="tab">
-					    		Business
-					    	</a>
-					    </li>
+							<?php 
+								$i++;
+						    endwhile;
+							?>  
 					</ul>
 				</div>
 				<!-- END PRICING TABLES TABS -->
@@ -36,29 +38,46 @@
 				<div class="tab-content">
 
 
-					<!-- START PERSONAL PRICING TABLES -->
-					<div role="tabpanel" class="tab-pane fade in active" id="personal">
-
-
-						<!-- PRICE TABLE START -->
+				<?php 
+					$i = 0;
+					while ( have_rows('prices_groups') ) : the_row(); ?>
+					<div role="tabpanel" class="tab-pane fade <?php if ($i==0) { ?>in active<?php } ?>" id="<?php  the_sub_field('prices_group_name'); ?>">
+				<?php
+				while (have_rows('prices_group_tariffs')) {
+				    the_row();
+				    ?>
 						<div class="price-table col-md-6">
 
 							<div class="item text-center">
 								<div class="type">
-									<h5>Standard</h5>
+									<h5><?php  the_sub_field('tariff_name'); ?></h5>
 								</div>
 								<div class="mount">
-									<h3>$0<span>/month</span></h3>
+									<h3><?php  the_sub_field('tariff_price'); ?><span>/<?php  the_sub_field('tariff_period'); ?></span></h3>
 								</div>
 								<div class="pfeat">
-									<p><i class="fa green fa-check-circle"></i> 10 GB Disk Space</p>
-									<p><i class="fa green fa-check-circle"></i> 1 Domain Names</p>
-									<p><i class="fa green fa-check-circle"></i> 1 Email Address</p>
-									<p><i class="fa red fa-times-circle"></i> Unlimited Support</p>
+									<?php 
+						        if( have_rows('tariff_features') ):
+						            while ( have_rows('tariff_features') ) : the_row();
+									?>
+									<p>
+										<?php if( get_sub_field('tariff_feature_sign') == 'checked' ): ?>
+											<i class="fa green fa-check-circle"></i> 
+										<?php elseif ( get_sub_field('tariff_feature_sign') == 'unchecked' ): ?>
+											<i class="fa red fa-times-circle"></i> 
+										<?php endif; ?>
+										<?php  the_sub_field('tariff_feature_name'); ?>
+									</p>
+									<?php 
+									            endwhile;
+									        else :
+									            // no rows found
+									        endif;
+									?>  
 								</div>
 								<div class="order">
 									<a href="index.html#">
-										Purchase Now
+										<?php  the_sub_field('tariff_button_name'); ?>
 									</a>
 								</div>
 							</div>
@@ -66,105 +85,17 @@
 						</div>
 						<!-- PRICE TABLE END -->
 
-						<!-- PRICE TABLE START -->
-						<div class="price-table col-md-6">
-
-							<div class="item text-center">
-								<div class="type">
-									<h5>Premium</h5>
-								</div>
-								<div class="mount">
-									<h3>$10<span>/month</span></h3>
-								</div>
-								<div class="pfeat">
-									<p><i class="fa green fa-check-circle"></i> 100 GB Disk Space</p>
-									<p><i class="fa green fa-check-circle"></i> 10 Domain Names</p>
-									<p><i class="fa green fa-check-circle"></i> 10 Email Address</p>
-									<p><i class="fa green fa-check-circle"></i> Unlimited Support</p>
-								</div>
-								<div class="order">
-									<a href="index.html#">
-										Purchase Now
-									</a>
-								</div>
-							</div>
-
-						</div>
-						<!-- PRICE TABLE END -->
-
-
-					</div>
-					<!-- END PERSONAL PRICING TABLES -->
-
-
-					<!-- START BUSINESS PRICING TABLES -->
-					<div role="tabpanel" class="tab-pane fade" id="business">
-
-
-						<!-- PRICE TABLE START -->
-						<div class="price-table col-md-6">
-
-							<div class="item text-center">
-								<div class="type">
-									<h5>Standard</h5>
-								</div>
-								<div class="mount">
-									<h3>$10<span>/month</span></h3>
-								</div>
-								<div class="pfeat">
-									<p><i class="fa green fa-check-circle"></i> 40 GB Disk Space</p>
-									<p><i class="fa green fa-check-circle"></i> 4 Domain Names</p>
-									<p><i class="fa green fa-check-circle"></i> 4 Email Address</p>
-									<p><i class="fa red fa-times-circle"></i> Unlimited Support</p>
-								</div>
-								<div class="order">
-									<a href="index.html#">
-										Purchase Now
-									</a>
-								</div>
-							</div>
-
-						</div>
-						<!-- PRICE TABLE END -->
-
-						<!-- PRICE TABLE START -->
-						<div class="price-table col-md-6">
-
-							<div class="item text-center">
-								<div class="type">
-									<h5>Premium</h5>
-								</div>
-								<div class="mount">
-									<h3>$40<span>/month</span></h3>
-								</div>
-								<div class="pfeat">
-									<p><i class="fa green fa-check-circle"></i> 600 GB Disk Space</p>
-									<p><i class="fa green fa-check-circle"></i> 60 Domain Names</p>
-									<p><i class="fa green fa-check-circle"></i> 60 Email Address</p>
-									<p><i class="fa green fa-check-circle"></i> Unlimited Support</p>
-								</div>
-								<div class="order">
-									<a href="index.html#">
-										Purchase Now
-									</a>
-								</div>
-							</div>
-
-						</div>
-						<!-- PRICE TABLE END -->
-
-
-					</div>
-					<!-- END BUSINESS PRICING TABLES -->
+						<?php
+							} 
+						?>
 
 
 				</div>
-				<!-- END PRICING TABLES CONTENT -->
+				<?php $i++; endwhile; ?>
 
 			</div>
-			<!-- END PRICING TABLES -->
-
-
+			<!-- END PRICING TABLES --> 		
+			<?php endif; ?>
 		</div>
 	</div>
 </section>

@@ -870,13 +870,17 @@ img {
   font-family: 'Poppins', sans-serif;
 }
 .prices .price-title .price-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   margin-top: 60px;
 }
 .prices .price-title .price-tabs li {
-  display: inline-block;
+  margin-bottom: 50px;
+  margin-right: 7px;
 }
 .prices .price-title .price-tabs li:last-child {
-  margin-left: 7px;
+  margin-bottom: 0px;
 }
 .prices .price-title .price-tabs li a {
   font-family: 'Poppins', sans-serif;
@@ -1008,7 +1012,6 @@ img {
   11. TESTIMONIALS
 -----------------------------------------*/
 .testimonials {
-  background: url('img/testimonials.jpg');
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;

@@ -8,7 +8,7 @@
 
 		<!-- Mobile Specific Meta -->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-
+		<link rel="shortcut icon" href="<?php echo get_sub_field('favicon')['url']; ?>">
 		<!-- TITLE -->
 		<title><?php bloginfo('name') ?></title>
 
@@ -18,10 +18,10 @@
 
 
 		<!-- ====== Preloader ======  -->
-<!--  	    <div class="loading">
+<!--   	    <div class="loading">
 			<div class="load-circle">
 			</div>
-		</div> -->
+		</div>  -->
 		<!-- ======End Preloader ======  -->
 
 		<!-- ====== HEADER START ======  -->
@@ -34,7 +34,6 @@
 		?>
 		<section class="s-header" id="home" data-scroll-index="0" style = "background-image: url(<?php echo $rand_row_image['url'];?>);">
 			<div class="header-overlay">
-
 
 				<!-- ====== NAVGITION ======  -->
 				<nav class="navbar land-nav">
@@ -49,13 +48,13 @@
 								<span class="icon-bar"></span>
 								</button>
 								<!-- logo -->
-								<a class="logo navbar-brand" href="index.html#home" data-scroll-nav="0">
+								<a class="logo navbar-brand" href="<?php the_sub_field('header_logo_url'); ?>" data-scroll-nav="0">
 
 									<!-- WHITE LOGO -->
-									<img class="white-logo" width="200" src="img/white-logo.png" alt="logo" />
+									<img class="white-logo" width="200" src="<?php echo get_sub_field('hs_header_logo')['url']; ?>" alt="logo" />
 
 									<!-- DARK LOGO -->
-									<img class="dark-logo" width="200" src="img/dark-logo.png" alt="logo" />
+									<img class="dark-logo" width="200" src="<?php echo get_sub_field('header_logo_scroll')['url']; ?>" alt="logo" />
 
 								</a>
 							</div>
@@ -100,10 +99,11 @@
 						<div class="row">
 							<div class="capt col-md-8 col-sm-11">
 
-								<h1><?php  the_sub_field('header_title'); ?></h1>
+								<h1><?php  the_sub_field('header_title'); ?> <span><?php  the_sub_field('header_title_bold'); ?></span> <?php  the_sub_field('header_title1'); ?> <span><?php  the_sub_field('header_title_bold1'); ?></span>
+								</h1>
 
-								<a href="index.html#about" data-scroll-nav="2" class="cta-btn">
-									Explore Theme
+								<a href="<?php  the_sub_field('header_button_link'); ?>" data-scroll-nav="2" class="cta-btn">
+									<?php  the_sub_field('header_button_name'); ?>
 								</a>
 
 							</div>
@@ -114,7 +114,7 @@
 
 
 				<div class="header-shap">
-	                <img src="img/shap1.png" alt="Shape">
+	                <img src="<?php  echo get_sub_field('bottom_shape')['url']; ?>" alt="Shape">
 	            </div>
 
 

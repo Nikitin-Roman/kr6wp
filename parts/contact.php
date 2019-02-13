@@ -6,25 +6,24 @@
 
 			<!-- START CONTACT SECTION TITLE -->
 			<div class="cont-title col-md-5">
-				<h3>Need <span>Help?</span> Get In <span>Touch</span></h3>
-				<p>Exea conse quat duis irurey dolor sed reprehen derit volupta velit cilum lorem incididunt labore sed magna exceptur aliqua.</p>
+				<h3><?php  the_sub_field('contact_title'); ?> <span><?php  the_sub_field('contact_title_bold'); ?></span> <?php  the_sub_field('contact_title1'); ?> <span><?php  the_sub_field('contact_title_bold1'); ?></span></h3>
+				<p><?php  the_sub_field('contact_subtitle'); ?></p>
 				<ul class="info">
-					<li>
-						<span class="icon icon-map"></span>
-						<p>Main Street 2000, Australia</p>
-					</li>
-					<li>
-						<span class="icon icon-mobile"></span>
-						<p>+1 023 456 789, +2 987 654 321</p>
-					</li>
-					<li>
-						<span class="icon icon-envelope"></span>
-						<p>company@mail.com</p>
-					</li>
-					<li>
-						<span class="icon icon-refresh"></span>
-						<p>Mon-Fri - 9:00 AM to 5:00 PM</p>
-					</li>
+					<?php 
+		        if( have_rows('contact_information') ):
+		            // loop through the rows of data
+		            while ( have_rows('contact_information') ) : the_row();
+					?>
+						<li>
+							<span class="icon <?php  the_sub_field('contact_et-line'); ?>"></span>
+							<p><?php  the_sub_field('contact_punct'); ?></p>
+						</li>
+					<?php 
+		         	endwhile;
+		        else :
+		            // no rows found
+		        endif;
+					?>
 				</ul>
 			</div>
 			<!-- END CONTACT SECTION TITLE -->
@@ -48,7 +47,7 @@
 						<textarea id="form_message" name="message" placeholder="Message *" rows="4" required="required" data-error="Message."></textarea>
 					</div>
 					<div class="contact-item col-md-12">
-						<input type="submit" class="button disabled" value="Send Message">
+						<input type="submit" class="button disabled" value="<?php  the_sub_field('contact_button_text'); ?>">
 					</div>
 
 
